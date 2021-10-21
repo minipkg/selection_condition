@@ -52,7 +52,7 @@ type SelectionCondition struct {
 }
 
 func (e *SelectionCondition) Validate() error {
-	return validation.ValidateStruct(&e) //validation.Field(&e.SortOrder, validation.Each(validation.In(SortOrderVariants...))),
+	return validation.ValidateStruct(e) //validation.Field(e.SortOrder, validation.Each(validation.In(SortOrderVariants...))),
 
 }
 
@@ -64,15 +64,15 @@ type WhereCondition struct {
 
 type WhereConditions []WhereCondition
 
-func (s *WhereCondition) Validate() error {
+func (s WhereCondition) Validate() error {
 	return validation.ValidateStruct(&s,
 		validation.Field(&s.Condition, validation.In(ConditionVariants...)),
 		validation.Field(&s.Value, validation.When(s.Condition == ConditionBt, validation.Length(2, 2))),
 	)
 }
 
-func (s *WhereConditions) Validate() error {
-	return validation.Validate([]WhereCondition(*s))
+func (s WhereConditions) Validate() error {
+	return validation.Validate([]WhereCondition(s))
 }
 
 func ParseQueryParams(params map[string][]string, struc interface{}) (*SelectionCondition, error) {
