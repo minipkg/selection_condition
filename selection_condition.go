@@ -451,3 +451,19 @@ func structFieldIndexesByJsonName(struc reflect.Type) map[string]int {
 	}
 	return res
 }
+
+func IntSlice2EmptyInterfaceSlice(sl []int) []interface{} {
+	res := make([]interface{}, len(sl))
+	for i, val := range sl {
+		res[i] = val
+	}
+	return res
+}
+
+func UintSlice2EmptyInterfaceSlice(sl []uint) []interface{} {
+	res := make([]interface{}, len(sl))
+	for i, val := range sl {
+		res[i] = val
+	}
+	return res
+}
