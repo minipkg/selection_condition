@@ -27,6 +27,7 @@ const (
 	ConditionLte = "lte"
 	ConditionIn  = "in"
 	ConditionBt  = "bt"
+	ConditionTS  = "ts"
 
 	DefaultWhereCondition = ConditionEq
 	DefaultSortDirect     = SortOrderAsc
@@ -42,6 +43,7 @@ var ConditionVariants = []interface{}{
 	ConditionLte,
 	ConditionIn,
 	ConditionBt,
+	ConditionTS,
 }
 
 type SelectionCondition struct {
